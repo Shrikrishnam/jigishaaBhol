@@ -1,0 +1,31 @@
+<div class="logo">
+  <table>
+    <tr>
+      <div class="logo1">
+        <td><img src="../assets/images/gym-logo.jpg"></td>
+        <td><h4 class="title font-italic font-weight-bold" style="margin-left:90px; padding-top:5px;">ROYAL FITNESS TRACKER CLUB</h4></td>
+      </div>
+    </tr>
+  </table>
+</div>
+
+  <nav class="navbar navbar-dark bg-primary top-nav">
+    <div class="container-fluid">
+      <button class="btn navbar-btn text-light" (click)="landingpage()">Home</button>
+      <button class="btn navbar-btn text-light" (click)="placeAppointment()">Place Appointment</button>
+      <button class="btn navbar-btn text-light" (click)="viewAppointment()">View Appointment</button>
+      <button class="btn navbar-btn text-light" (click)="contactUspage()">Contact Us</button>
+    </div>
+  </nav>
+
+
+<div class="sidebar bg-primary">
+  <button class="btn btn-default text-light" (click)="landingpage()" style="margin-top: 40px;">Home</button><br>
+  <button class="btn btn-default text-light mt-3" (click)="placeAppointment()">Place Appointment</button><br>
+  <button class="btn btn-default text-light mt-3" (click)="viewAppointment()">View Appointment</button><br>
+  <button class="btn btn-default text-light mt-3" (click)="contactUspage()">Contact Us</button>
+
+</div>
+<div class="main">
+<router-outlet></router-outlet>
+</div>

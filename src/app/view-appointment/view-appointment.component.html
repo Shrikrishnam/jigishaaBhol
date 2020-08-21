@@ -1,0 +1,134 @@
+<div id="user-table" class="table-responsive">
+    <h2 class="text-center">Appointment List</h2>
+   <table id="list-table" class="table table-hover table-striped">
+       <tr>
+        <th scope="col" class="h1">Sl NO</th>
+        <th scope="col" class="h2">Name</th>
+        <th scope="col" class="h3">Address</th>
+        <th scope="col" class="h4">City</th>
+        <th scope="col" class="h5">Package</th>
+        <th scope="col" class="h6">Trainer Preference</th>
+        <th scope="col" class="h7">Phone</th>
+        </tr>
+    <tbody *ngIf="list?.length > 0">
+        <tr *ngFor="let l of list">
+            <td> {{l.id}}</td>
+            <td>{{l.firstname}} {{l.lastname}}</td>
+            <td>{{l.streetaddress}}</td>
+            <td>{{l.city}}</td>
+            <td>{{l.packages}}</td>
+            <td>{{l.trainerpreference}}</td>
+            <td>{{l.phonenumber}}</td>
+            <td>
+                <a (click)="editForm(l)" role="button"><span class="text-primary">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                      </svg>
+                </span></a>
+            </td>
+            <td>
+                <a (click)="deleteAppointment(l.id)" role="button"><span class="align-middle text-danger">
+                    <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                      </svg>
+                </span></a>
+            </td>
+        </tr>
+    </tbody>
+   </table>
+</div>
+<div *ngIf="viewData">
+    <h2 class="text-center">Update Appointment</h2>
+    <form ngNativeValidate (ngSubmit)="onSubmit(service.viewAppointment)">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="firstname">First Name : </label>
+                <input type="text" [(ngModel)]="service.viewAppointment.firstname" name="firstname" class="form-control" id="firstname"  required pattern="[A-Za-z]+" placeholder="First name">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lastname">Last Name : </label>
+                <input type="text" [(ngModel)]="service.viewAppointment.lastname" name="lastname" class="form-control" id="lastname"  required pattern="[A-Za-z]+" placeholder="Last name">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="age">Age :</label>
+              <input type="number" [(ngModel)]="service.viewAppointment.age" name="age" min="18" max="60" class="form-control" id="age" required placeholder="Age">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="phonenumber">Phone Number :</label>
+                <input type="number" [(ngModel)]="service.viewAppointment.phonenumber" name="phonenumber" maxlength="10" minlength="10" class="form-control" id="phonenumber" required placeholder="Phone No">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="email">Email :</label>
+                <input type="email" [(ngModel)]="service.viewAppointment.email" name="email" class="form-control" id="email" placeholder="Email">
+              </div>
+        </div>
+        <fieldset>
+            <legend>Address</legend>
+            <div class="form-row">
+                <div class="form-group col-6">
+                <label for="streetaddress">Street Address :</label>
+                <input type="text" [(ngModel)]="service.viewAppointment.streetaddress"  class="form-control" id="streetaddress" required name="streetaddress"/>
+                </div>
+                <div class="form-group col-6">
+                <label for="city">City :</label>
+                <input type="text" [(ngModel)]="service.viewAppointment.city"  class="form-control" id="city" required name="city"/>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-4">
+                <label for="state">State :</label>
+                <input type="text" [(ngModel)]="service.viewAppointment.state" class="form-control" id="state" required name="state"/>
+                </div>
+                <div class="form-group col-4">
+                <label for="country">Country :</label>
+                <input type="text" [(ngModel)]="service.viewAppointment.country"  class="form-control" id="country" required name="country" />
+                </div>
+                <div class="form-group col-4">
+                <label for="pincode">Pincode :</label>
+                <input type="tel" [(ngModel)]="service.viewAppointment.pincode" class="form-control" id="pincode" required pattern="[0-9]{6}" name="pincode" />
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <label for="trainerpreference">Trainer Preference :</label>
+            <select name="trainerpreference" id="trainerpreference" [(ngModel)]="service.viewAppointment.trainerpreference" class="form-control" required>
+                  <option value="0" selected>--Select Preference--</option>
+                  <option value="Male">Male Trainer</option>
+                  <option value="Female">Female Trainer</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Physiotherapist :</label>
+            <div class="form-check-inline ml-2">
+            <input class="form-check-input" type="radio" id="Yes" [(ngModel)]="physiotherapist" name="physiotherapist" value="Yes">
+            <label class="form-check-label" for="male">Yes</label><br>
+            <input class="form-check-input ml-2" type="radio" id="No"  [(ngModel)]="physiotherapist" name="physiotherapist" value="No">
+            <label class="form-check-label" for="female">No</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="packages">Packages :</label>
+            <select name="packages" id="packages" [(ngModel)]="service.viewAppointment.packages" class="form-control" (change)="calculateInr($event)" required>
+                  <option value="0" selected>--Select Package--</option>
+                  <option value=500.00>500 for 1 Month</option>
+                  <option value=1200.00>1200 for 3 Months</option>
+                  <option value=2400.00>2400 for 6 Months</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="inr">Inr :</label>
+            <input type="number" [(ngModel)]="service.viewAppointment.inr" name="inr" class="form-control" id="inr" required />
+          </div>
+          <div class="form-group">
+            <label for="paisa">Paisa :</label>
+            <input type="number" [(ngModel)]="service.viewAppointment.paisa" name="paisa" class="form-control" id="paisa" required />
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary">Edit Appointment</button>
+        </div>
+    </form>
+</div>

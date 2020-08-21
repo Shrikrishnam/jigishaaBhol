@@ -1,0 +1,96 @@
+<div>
+    <h4>Apply for Trainer!!</h4>
+    <form [formGroup]="fitnessForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="firstname">First Name :</label>
+              <input type="fname" #firstname formControlName="firstname" class="form-control" id="firstname" required pattern="[A-Za-z]+" placeholder="First name" autofocus>
+            </div>
+            <div class="form-group col-md-6">
+              <label for="lastname">Last Name :</label>
+              <input type="lname" formControlName="lastname" class="form-control" id="lastname" required pattern="[A-Za-z]+" placeholder="Last Name">
+            </div>
+        </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="age">Age :</label>
+              <input type="number" formControlName="age" class="form-control" id="age" required placeholder="Age">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="phonenumber">Phone Number :</label>
+                <input type="number" formControlName="phonenumber" class="form-control" id="phonenumber" required placeholder="Phone No" max=10>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="email">Email :</label>
+                <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email">
+              </div>
+          </div>
+
+          <fieldset>
+            <legend>Address</legend>
+            <div class="form-row">
+                <div class="form-group col-6">
+                <label for="streetaddress">Street Address :</label>
+                <input type="text" formControlName="streetaddress" class="form-control" id="streetaddress" required name="streetaddress"/>
+                </div>
+                <div class="form-group col-6">
+                <label for="city">City :</label>
+                <input type="text" formControlName="city" class="form-control" id="city" required name="city"/>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-4">
+                <label for="state">State :</label>
+                <input type="text" formControlName="state" class="form-control" id="state" required name="state"/>
+                </div>
+                <div class="form-group col-4">
+                <label for="country">Country :</label>
+                <input type="text" formControlName="country"  class="form-control" id="country" required name="country" />
+                </div>
+                <div class="form-group col-4">
+                <label for="pincode">Pincode :</label>
+                <input type="text" formControlName="pincode" class="form-control" id="pincode" required pattern="[0-9]{6}" name="pincode" />
+                </div>
+            </div>
+            </fieldset>
+
+            <div class="form-group">
+                <label for="trainerpreference">Trainer Preference :</label>
+                <select name="trainerpreference" id="trainerpreference" formControlName="trainerpreference" class="form-control" required>
+                      <option value="0" selected>--Select Preference--</option>
+                      <option value="Male">Male Trainer</option>
+                      <option value="Female">Female Trainer</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Physiotherapist :</label>
+                <div class="form-check-inline ml-2">
+                <input class="form-check-input" type="radio" id="Yes" formControlName="physiotherapist" name="physiotherapist" value="Yes">
+                <label class="form-check-label" for="male">Yes</label><br>
+                <input class="form-check-input ml-2" type="radio" id="No" formControlName="physiotherapist" name="physiotherapist" value="No">
+                <label class="form-check-label" for="female">No</label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="packages">Packages :</label>
+                <select name="packages" id="packages" formControlName="packages" class="form-control" (change)="calculateInr($event)" required>
+          
+                      <option value="0" selected>--Select Package--</option>
+                      <option value=500.00>500 for 1 Month</option>
+                      <option value=1200.00>1200 for 3 Months</option>
+                      <option value=2400.00>2400 for 6 Months</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="inr">Inr :</label>
+                <input type="number" formControlName="inr" class="form-control" id="inr" required/>
+              </div>
+              <div class="form-group">
+                <label for="paisa">Paisa :</label>
+                <input type="number" formControlName="paisa" class="form-control" id="paisa" required/>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary" [disabled]="!fitnessForm.valid">Submit</button>
+              </div>
+    </form>
+</div>
